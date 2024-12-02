@@ -1,15 +1,18 @@
 import pandas as pd
 import sqlite3
+import sys
+import os
 
 from classifier import Classifier
 from helper_functions import get_transactions_length, get_transactions, add_transactions
+from constants import CONFIG_FOLDER
 
-transactions = pd.read_csv("transactions.csv")
+transactions = pd.read_csv(sys.argv[1])
 classifier = Classifier()
 
 inst_type = 'ws'
 
-conn = sqlite3.connect('transactions.db')
+conn = sqlite3.connect(os.path.join(CONFIG_FOLDER, APP_NAME + ".db"))
 cur = conn.cursor()
 
 #cur.execute('DROP TABLE transactions')
@@ -26,7 +29,6 @@ cur.execute('''
 ''')
 
 transaction_num = get_transactions_length(conn)
-print("Hello world")
 
 if (transactions.columns.values == ['date','transaction','description','amount','balance']).all():
     inst_type = 'ws'

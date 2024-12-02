@@ -4,7 +4,7 @@
 	import TransactionTable from '$lib/components/TransactionTable.svelte';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 
-	let file: File;
+	let file: File | null;
 	let transactions: TransactionRowType[] = [];
 
 	const fileUploadHandler = (files: FileList) => {
