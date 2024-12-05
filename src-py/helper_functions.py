@@ -12,3 +12,11 @@ def get_transactions(conn: sqlite3.Connection) -> pd.DataFrame:
 def add_transactions(conn: sqlite3.Connection, data: pd.DataFrame) -> None:
     '''Insert rows into the db'''
     data.to_sql('transactions', conn, if_exists='append', index=False)
+
+def update_transactions(conn: sqlite3.Connection, rows_to_update: list[tuple]) -> None:
+    '''Edit existing transactions in the db'''
+    conn.executemany('''
+        UPDATE transactions
+        SET date = ?, type = ?, description = ?, amount = ?, category = ?
+        WHERE id = ?
+    ''', rows_to_update)

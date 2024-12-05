@@ -1,8 +1,11 @@
 import pandas as pd
 import sqlite3
+import logging
 
 from classifier import Classifier
 from helper_functions import get_transactions_length, get_transactions, add_transactions
+
+logger = logging.getLogger(__name__)
 
 transactions = pd.read_csv("transactions.csv")
 classifier = Classifier()
@@ -26,7 +29,6 @@ cur.execute('''
 ''')
 
 transaction_num = get_transactions_length(conn)
-print("Hello world")
 
 if (transactions.columns.values == ['date','transaction','description','amount','balance']).all():
     inst_type = 'ws'
