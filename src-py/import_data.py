@@ -2,12 +2,15 @@ import pandas as pd
 import sqlite3
 import sys
 import os
+import logging
 
 from classifier import Classifier
 from helper_functions import get_transactions_length, get_transactions, add_transactions
 from constants import CONFIG_FOLDER
 
+logger = logging.getLogger(__name__)
 transactions = pd.read_csv(sys.argv[1])
+
 classifier = Classifier()
 
 inst_type = 'ws'
