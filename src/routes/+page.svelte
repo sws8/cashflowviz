@@ -4,15 +4,9 @@
 	import TransactionTable from '$lib/components/TransactionTable.svelte';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 
-	import { invoke } from '@tauri-apps/api/core';
 
 	let file: String | undefined;
 	let transactions: TransactionRowType[] = [];
-
-	const fileUploadHandler = (files: FileList) => {
-		file = files.item(0)?.webkitRelativePath;
-		invoke('send_csv', { file_path: file });
-	};
 </script>
 
 <div class="flex flex-col w-screen h-screen">
@@ -32,7 +26,7 @@
 		</div>
 	{:else}
 		<div class="flex-grow flex justify-center items-center w-screen">
-			<Upload fileHandler={fileUploadHandler} />
+			<Upload />
 		</div>
 	{/if}
 </div>

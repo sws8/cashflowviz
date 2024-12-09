@@ -1,16 +1,14 @@
 <script lang="ts">
 	import { FileDropzone } from '@skeletonlabs/skeleton';
 	import Icon from '@iconify/svelte';
+	import { upload_handler } from '$lib/services/upload';
 
-	export let fileHandler;
-	let fileList: FileList;
-
-	const onChangeHandler = (e: Event) => {
-		if (fileList.item(0)?.type === 'text/csv') fileHandler(fileList);
+	async function onChangeHandler(e: Event) {
+		upload_handler();
 	};
 </script>
 
-<FileDropzone class="w-[624px]" name="files" bind:files={fileList} on:change={onChangeHandler}>
+<FileDropzone class="w-[624px]" name="files" on:click={onChangeHandler}>
 	<div class="justify-center" slot="lead">
 		<Icon class="text-5xl w-screen" icon="mdi:file-upload" />
 	</div>
