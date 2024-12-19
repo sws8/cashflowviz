@@ -1,19 +1,3 @@
-# create-svelte
-
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
 ## Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
@@ -25,9 +9,16 @@ npm run dev
 npm run dev -- --open
 ```
 
+Running on Arch X11 with Nvidia
+
+```bash
+# if you are running on Wayland you may encounter an issue, just switch to X11 and then run:
+WEBKIT_DISABLE_DMABUF_RENDERER=1 npm run tauri dev
+```
+
 ## Building
 
-To create a production version of your app:
+To create a production version:
 
 ```bash
 npm run build
