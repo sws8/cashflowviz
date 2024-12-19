@@ -1,18 +1,21 @@
 import pandas as pd
 import sqlite3
+import sys
+import os
 import logging
 
 from classifier import Classifier
 from helper_functions import get_transactions_length, get_transactions, add_transactions
+from constants import CONFIG_FOLDER
 
 logger = logging.getLogger(__name__)
+transactions = pd.read_csv(sys.argv[1])
 
-transactions = pd.read_csv("transactions.csv")
 classifier = Classifier()
 
 inst_type = 'ws'
 
-conn = sqlite3.connect('transactions.db')
+conn = sqlite3.connect(os.path.join(CONFIG_FOLDER, APP_NAME + ".db"))
 cur = conn.cursor()
 
 #cur.execute('DROP TABLE transactions')

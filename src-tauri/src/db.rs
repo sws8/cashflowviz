@@ -25,5 +25,5 @@ fn get_database_path() -> PathBuf {
         fs::create_dir_all(&db).expect("Could not create application config directory.");
     }
 
-    db.join("cashflowviz.db3")
+    db.join("cashflowviz.db")
 }

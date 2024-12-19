@@ -4,23 +4,9 @@
 	import TransactionTable from '$lib/components/TransactionTable.svelte';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 
-	let file: File;
-	let transactions: TransactionRowType[] = [];
 
-	const fileUploadHandler = (files: FileList) => {
-		file = files.item(0);
-		for (let i = 0; i < 50; i++) {
-			let transaction: TransactionRowType = {
-				accountType: 'Visa',
-				accountNumber: '111-111-111',
-				transactionDate: new Date(),
-				cost: [-200, 15, 35][i % 3],
-				description: ['PERSONAL LOAN', 'NETFLIX SEATTLE VALLEY I.', 'SOBEYS INC'][i % 3],
-				category: ['Car', 'Entertainment', 'Groceries'][i % 3]
-			};
-			transactions.push(transaction);
-		}
-	};
+	let file: String | undefined;
+	let transactions: TransactionRowType[] = [];
 </script>
 
 <div class="flex flex-col w-screen h-screen">
@@ -40,7 +26,7 @@
 		</div>
 	{:else}
 		<div class="flex-grow flex justify-center items-center w-screen">
-			<Upload fileHandler={fileUploadHandler} />
+			<Upload />
 		</div>
 	{/if}
 </div>
